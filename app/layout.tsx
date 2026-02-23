@@ -8,8 +8,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "RIJO VARUGHESE | Full-Stack Engineer",
-  description: "Senior Full-Stack Engineer Portfolio",
+  title: "RIJO VARUGHESE | Full-Stack Engineer Portfolio",
+  description: "Explore the work and skills of Rijo Varughese, a Full-Stack Engineer specializing in scalable backends and modern UI architectures.",
 };
 
 export default function RootLayout({
