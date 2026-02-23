@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 export default function TerminalFooter() {
     const [input, setInput] = useState("");
     const [output, setOutput] = useState<string[]>([]);
+    const [history, setHistory] = useState<string[]>([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -13,8 +15,31 @@ export default function TerminalFooter() {
     }, [output]);
 
     const handleCommand = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter") {
+        if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (history.length > 0) {
+                const nextIndex = historyIndex + 1;
+                if (nextIndex < history.length) {
+                    setHistoryIndex(nextIndex);
+                    setInput(history[history.length - 1 - nextIndex]);
+                }
+            }
+        } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (historyIndex > 0) {
+                const nextIndex = historyIndex - 1;
+                setHistoryIndex(nextIndex);
+                setInput(history[history.length - 1 - nextIndex]);
+            } else if (historyIndex === 0) {
+                setHistoryIndex(-1);
+                setInput("");
+            }
+        } else if (e.key === "Enter") {
             const cmd = input.toLowerCase().trim();
+            if (cmd) {
+                setHistory((prev) => [...prev, input]);
+                setHistoryIndex(-1);
+            }
             const newOutput = [...output, `rijo@portfolio:~$ ${input}`];
 
             let response = "";
@@ -34,10 +59,10 @@ export default function TerminalFooter() {
                 }, 1500);
             } else if (cmd === "github") {
                 response = "> OPENING REPOSITORY...";
-                setTimeout(() => window.open("https://github.com", "_blank"), 500);
+                setTimeout(() => window.open("https://github.com/rjv450", "_blank"), 500);
             } else if (cmd === "linkedin") {
                 response = "> ESTABLISHING PROFESSIONAL CONNECTION...";
-                setTimeout(() => window.open("https://linkedin.com", "_blank"), 500);
+                setTimeout(() => window.open("https://www.linkedin.com/in/rijo-v-b376aaaa/", "_blank"), 500);
             } else if (cmd === "resume") {
                 response = "> DOWNLOADING SYSTEM_DOSSIER.PDF (RESUME-2026)...";
                 setTimeout(() => window.open("/docs/Rijo_varughese_resume-2026.pdf", "_blank"), 500);
@@ -92,10 +117,10 @@ export default function TerminalFooter() {
                 </div>
 
                 <div className="flex space-x-4">
-                    <a href="#" className="retro-border border-green-900 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-colors flex items-center">
+                    <a href="https://www.linkedin.com/in/rijo-v-b376aaaa/" target="_blank" className="retro-border border-green-900 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-colors flex items-center">
                         <span className="mr-2">[LNK]</span> LINKEDIN
                     </a>
-                    <a href="#" className="retro-border border-green-900 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-colors flex items-center">
+                    <a href="https://github.com/rjv450" target="_blank" className="retro-border border-green-900 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-colors flex items-center">
                         <span className="mr-2">[GIT]</span> GITHUB
                     </a>
                 </div>
