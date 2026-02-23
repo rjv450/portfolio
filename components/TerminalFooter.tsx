@@ -8,6 +8,8 @@ export default function TerminalFooter() {
     const [historyIndex, setHistoryIndex] = useState(-1);
     const scrollRef = useRef<HTMLDivElement>(null);
 
+    const commands = ["help", "contact", "phone", "whoami", "github", "linkedin", "resume", "clear", "skills", "projects", "experience"];
+
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollIntoView({ behavior: "smooth" });
@@ -34,6 +36,14 @@ export default function TerminalFooter() {
                 setHistoryIndex(-1);
                 setInput("");
             }
+        } else if (e.key === "Tab") {
+            e.preventDefault();
+            if (input.trim()) {
+                const matches = commands.filter(c => c.startsWith(input.toLowerCase()));
+                if (matches.length > 0) {
+                    setInput(matches[0]);
+                }
+            }
         } else if (e.key === "Enter") {
             const cmd = input.toLowerCase().trim();
             if (cmd) {
@@ -44,9 +54,15 @@ export default function TerminalFooter() {
 
             let response = "";
             if (cmd === "help") {
-                response = "> AVAILABLE: HELP, CONTACT, PHONE, WHOAMI, GITHUB, LINKEDIN, RESUME, CLEAR";
+                response = "> AVAILABLE: HELP, CONTACT, PHONE, WHOAMI, GITHUB, LINKEDIN, RESUME, SKILLS, PROJECTS, EXPERIENCE, CLEAR";
             } else if (cmd === "whoami") {
-                response = "> RIJO VARUGHESE: FULL-STACK ENGINEER (3.5+ YRS). ARCHITECT OF SCALABLE BACKENDS & MODERN UI. MOB: +919605718477";
+                response = "> RIJO VARUGHESE: A PASSIONATE FULL-STACK ENGINEER WITH 3.5+ YEARS OF EXPERIENCE IN ARCHITECTING SCALABLE SOLUTIONS AND CRAFTING INTUITIVE USER EXPERIENCES. SPECIALIZING IN NEXT.JS, NODE.JS, AND CLOUD ARCHITECTURES. DRIVEN BY PRECISION AND INNOVATION.";
+            } else if (cmd === "skills") {
+                response = "> EXECUTING SKILLS_SCAN... LOADED: NEXT.JS, REACT, NODE.JS, TYPESCRIPT, AWS, SNOWFLAKE, DOCKER, KUBERNETES...";
+            } else if (cmd === "projects") {
+                response = "> QUERYING PROJECT_DATABASE... MOST RECENT: MOSAIC (B2B CAMERA HUB), CALLNDR, DENTCARE...";
+            } else if (cmd === "experience") {
+                response = "> RETRIEVING CAREER_CHRONOLOGY... CURRENT: SENIOR FULL-STACK ENGINEER | PAST: IROID TECHNOLOGIES, INNOVATURE LABS.";
             } else if (cmd === "phone" || cmd === "call") {
                 response = "> MOBILE_ID: +919605718477 (KOCHI, INDIA). INITIATING PHONE_BRIDGE...";
                 setTimeout(() => {
