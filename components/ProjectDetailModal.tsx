@@ -23,7 +23,7 @@ export default function ProjectDetailModal({
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 md:top-4 md:right-4 font-mono text-xl md:text-2xl hover:bg-black hover:text-white px-2 transition-colors border-2 border-black bg-white z-10"
+                    className="absolute top-2 right-2 md:top-4 md:right-4 font-mono text-xl md:text-2xl invert-hover px-2 transition-colors border-2 border-black bg-white z-10"
                 >
                     X
                 </button>
@@ -70,19 +70,19 @@ export default function ProjectDetailModal({
                     <div className="flex gap-2 md:gap-4">
                         <a
                             href="mailto:rijovarghese450@gmail.com"
-                            className="retro-border px-3 py-1 md:px-4 md:py-2 font-mono text-[10px] md:text-sm hover:bg-black hover:text-white transition-colors"
+                            className="retro-border invert-hover px-3 py-1 md:px-4 md:py-2 font-mono text-[10px] md:text-sm transition-colors"
                         >
                             [ EMAIL_ENVOY ]
                         </a>
                         <a
                             href="tel:+919605718477"
-                            className="retro-border px-3 py-1 md:px-4 md:py-2 font-mono text-[10px] md:text-sm hover:bg-black hover:text-white transition-colors"
+                            className="retro-border invert-hover px-3 py-1 md:px-4 md:py-2 font-mono text-[10px] md:text-sm transition-colors"
                         >
                             [ VOICE_LINK ]
                         </a>
                     </div>
                     <button
-                        className="retro-border px-4 py-1 md:px-6 md:py-2 font-mono text-xs md:text-sm hover:bg-black hover:text-white transition-colors bg-black text-white"
+                        className="retro-border px-4 py-1 md:px-6 md:py-2 font-mono text-xs md:text-sm invert-hover transition-colors bg-white text-black font-bold"
                         onClick={onClose}
                     >
                         TERMINATE_VIEW

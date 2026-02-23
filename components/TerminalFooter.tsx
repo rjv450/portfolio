@@ -11,7 +11,7 @@ export default function TerminalFooter() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const terminalEndRef = useRef<HTMLDivElement>(null);
 
-    const commands = ["help", "contact", "phone", "whoami", "github", "linkedin", "resume", "clear", "skills", "projects", "experience"];
+    const commands = ["help", "contact", "email", "phone", "whoami", "github", "linkedin", "resume", "clear", "skills", "projects", "experience"];
 
     useEffect(() => {
         if (terminalEndRef.current) {
@@ -71,7 +71,7 @@ export default function TerminalFooter() {
                 setTimeout(() => {
                     window.location.href = "tel:+919605718477";
                 }, 1500);
-            } else if (cmd === "contact" || cmd === "message") {
+            } else if (cmd === "contact" || cmd === "message" || cmd === "email") {
                 response = "> INITIATING SECURE CHANNEL... MAIL: rijovarghese450@gmail.com | MOB: +919605718477";
                 setTimeout(() => {
                     window.location.href = "mailto:rijovarghese450@gmail.com";
