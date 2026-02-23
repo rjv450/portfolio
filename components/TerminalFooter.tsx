@@ -1,5 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Terminal, Github, Linkedin, HelpCircle, ShieldCheck } from "lucide-react";
 
 export default function TerminalFooter() {
     const [input, setInput] = useState("");
@@ -7,12 +9,13 @@ export default function TerminalFooter() {
     const [history, setHistory] = useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const terminalEndRef = useRef<HTMLDivElement>(null);
 
     const commands = ["help", "contact", "phone", "whoami", "github", "linkedin", "resume", "clear", "skills", "projects", "experience"];
 
     useEffect(() => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollIntoView({ behavior: "smooth" });
+        if (terminalEndRef.current) {
+            terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [output]);
 
@@ -96,35 +99,38 @@ export default function TerminalFooter() {
     };
 
     return (
-        <footer className="bg-black text-green-500 p-6 md:p-12 font-mono">
-            <div className="max-w-4xl mx-auto">
-                <div className="flex items-center justify-between mb-4 border-b border-green-900 pb-2">
-                    <span>RIJO_OS_TERMINAL_V1.0</span>
+        <footer className="bg-black text-green-500 p-4 md:p-12 font-mono mt-20">
+            <div className="max-w-4xl mx-auto border-4 border-green-900/30 p-4 md:p-6 bg-green-950/10">
+                <div className="flex items-center justify-between mb-4 border-b border-green-900/50 pb-2">
+                    <div className="flex items-center gap-2">
+                        <Terminal size={14} />
+                        <span className="text-xs md:text-sm">RIJO_OS_TERMINAL_V1.0</span>
+                    </div>
                     <div className="flex space-x-2">
-                        <div className="w-3 h-3 bg-red-600"></div>
-                        <div className="w-3 h-3 bg-yellow-600"></div>
-                        <div className="w-3 h-3 bg-green-600"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-600"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-600"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-600"></div>
                     </div>
                 </div>
 
-                <div className="mb-6 space-y-2 max-h-[400px] overflow-y-auto scrollbar-hide">
-                    <p>&gt; INITIALIZING SYSTEM...</p>
+                <div className="mb-6 space-y-2 h-[300px] md:h-[400px] overflow-y-auto scrollbar-hide text-xs md:text-base">
+                    <p className="flex items-center gap-2"><ShieldCheck size={14} /> INITIALIZING SYSTEM...</p>
                     <p>&gt; LOGIN SUCCESSFUL. WELCOME, USER.</p>
-                    <p className="text-zinc-500">Type &apos;HELP&apos; to see available protocols.</p>
-                    <p className="text-zinc-500">[ type &apos;resume&apos; to download | type &apos;phone&apos; to call | type &apos;contact&apos; to email ]</p>
+                    <p className="text-zinc-500 flex items-center gap-2"><HelpCircle size={14} /> Type &apos;HELP&apos; to see protocols.</p>
+                    <p className="text-zinc-500 opacity-60">[ type &apos;resume&apos; | type &apos;phone&apos; | type &apos;contact&apos; ]</p>
                     {output.map((line, i) => (
-                        <p key={i} className={line.startsWith(">") ? "text-white opacity-80" : "text-green-500"}>
+                        <p key={i} className={`break-words ${line.startsWith(">") ? "text-white opacity-90" : "text-green-500"}`}>
                             {line}
                         </p>
                     ))}
-                    <div ref={scrollRef}></div>
+                    <div ref={terminalEndRef}></div>
                 </div>
 
-                <div className="flex items-center mb-8">
-                    <span className="mr-2 text-green-500 font-bold">rijo@portfolio:~$</span>
+                <div className="flex items-center mb-8 border-t border-green-900/30 pt-4">
+                    <span className="mr-2 text-green-500 font-bold shrink-0">rijo@portfolio:~$</span>
                     <input
                         type="text"
-                        className="bg-transparent border-none focus:ring-0 text-green-500 w-full p-0 font-mono outline-none"
+                        className="bg-transparent border-none focus:ring-0 text-green-500 w-full p-0 font-mono outline-none text-xs md:text-base"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleCommand}
@@ -132,14 +138,17 @@ export default function TerminalFooter() {
                     />
                 </div>
 
-                <div className="flex space-x-4">
-                    <a href="https://www.linkedin.com/in/rijo-v-b376aaaa/" target="_blank" className="retro-border border-green-900 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-colors flex items-center">
-                        <span className="mr-2">[LNK]</span> LINKEDIN
+                <div className="flex flex-wrap gap-4">
+                    <a href="https://www.linkedin.com/in/rijo-v-b376aaaa/" target="_blank" className="retro-border border-green-900/50 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-all flex items-center text-xs md:text-sm bg-transparent">
+                        <Linkedin size={14} className="mr-2" /> LINKEDIN
                     </a>
-                    <a href="https://github.com/rjv450" target="_blank" className="retro-border border-green-900 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-colors flex items-center">
-                        <span className="mr-2">[GIT]</span> GITHUB
+                    <a href="https://github.com/rjv450" target="_blank" className="retro-border border-green-900/50 p-2 text-green-500 hover:bg-green-500 hover:text-black transition-all flex items-center text-xs md:text-sm bg-transparent">
+                        <Github size={14} className="mr-2" /> GITHUB
                     </a>
                 </div>
+            </div>
+            <div className="text-center mt-12 opacity-30 text-[10px] uppercase tracking-widest">
+                © 2026 RIJO VARUGHESE // ALL_RIGHTS_RESERVED
             </div>
         </footer>
     );
