@@ -7,7 +7,7 @@ export default function QuickActions() {
     const [isOpen, setIsOpen] = useState(false);
 
     const actions = [
-        { icon: <Download size={20} />, label: "GET_RESUME", href: "/docs/Rijo_varughese_resume-2026.pdf", target: "_blank" },
+        { icon: <Download size={20} />, label: "GET_RESUME", href: "/docs/Resume%20-%20Rijo%20Varughese%20(1).pdf", target: "_blank" },
         { icon: <Mail size={20} />, label: "CONTACT_ME", href: "mailto:rijovarghese450@gmail.com" },
         { icon: <Phone size={20} />, label: "CALL_NOW", href: "tel:+919605718477" },
     ];

@@ -36,7 +36,7 @@ export default function GlitchHeader() {
                     className="mt-8 flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto px-4"
                 >
                     <a
-                        href="/docs/Rijo_varughese_resume-2026.pdf"
+                        href="/docs/Resume%20-%20Rijo%20Varughese%20(1).pdf"
                         target="_blank"
                         className="retro-border invert-hover px-8 py-3 font-mono transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2 text-sm md:text-base"
                     >

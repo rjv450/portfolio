@@ -83,8 +83,8 @@ export default function TerminalFooter() {
                 response = "> ESTABLISHING PROFESSIONAL CONNECTION...";
                 setTimeout(() => window.open("https://www.linkedin.com/in/rijo-v-b376aaaa/", "_blank"), 500);
             } else if (cmd === "resume") {
-                response = "> DOWNLOADING SYSTEM_DOSSIER.PDF (RESUME-2026)...";
-                setTimeout(() => window.open("/docs/Rijo_varughese_resume-2026.pdf", "_blank"), 500);
+                response = "> DOWNLOADING SYSTEM_DOSSIER.PDF (UPDATED_RESUME)...";
+                setTimeout(() => window.open("/docs/Resume%20-%20Rijo%20Varughese%20(1).pdf", "_blank"), 500);
             } else if (cmd === "clear") {
                 setOutput([]);
                 setInput("");
